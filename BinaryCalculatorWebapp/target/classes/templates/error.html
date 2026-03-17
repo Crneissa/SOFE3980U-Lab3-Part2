@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Showing the Results</title>
+    <title>Invalid Operator</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<!-- for styling -->
     <style>
@@ -55,11 +55,10 @@
 	<form action="/" method="Post">
 		<table id="calcu">
 			<tr>
-				<td span="2"><input type="text" th:value="${operand1} + ' '+${operator}+' '+${operand2} + '='+ ${result}"  readonly /></td>
+				<td span="2"><input type="text" th:value="'Invalid operator: ( '+${operator}+' )'"  readonly /></td>
 			</tr>
 			<tr>
 				<td ><a href="/" > <input type="button" value="New Calculation" /></a></td>
-				<td ><a th:href="'/?operand1='+${result}" > <input type="button" value="Continue Calculation" /></a></td>
 			</tr>
 		</table>
 	</form>
