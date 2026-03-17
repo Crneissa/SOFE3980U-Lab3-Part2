@@ -49,8 +49,10 @@ spec:
             steps {
                 container('gcloud') {
                     dir('BinaryCalculatorWebapp') {
-                        sh 'gcloud config set project $PROJECT'
-                        sh 'gcloud builds submit -t $IMAGE_TAG --suppress-logs'
+                        sh 'echo "PROJECT=$PROJECT"'
+                        sh 'echo "IMAGE_TAG=$IMAGE_TAG"'
+                        sh 'gcloud config set project "$PROJECT"'
+                        sh 'gcloud builds submit -t "$IMAGE_TAG" --suppress-logs'
                     }
                 }
             }
@@ -60,8 +62,8 @@ spec:
             steps {
                 container('gcloud') {
                     dir('BinaryCalculatorWebapp') {
-                        sh 'gcloud config set project $PROJECT'
-                        sh 'gcloud container clusters get-credentials $CLUSTER --zone=$CLUSTER_ZONE'
+                        sh 'gcloud config set project "$PROJECT"'
+                        sh 'gcloud container clusters get-credentials "$CLUSTER" --zone="$CLUSTER_ZONE"'
 
                         script {
                             try {
@@ -71,7 +73,7 @@ spec:
                             }
                         }
 
-                        sh 'kubectl create deployment binarycalculator-deployment --image $IMAGE_TAG --port=8080'
+                        sh 'kubectl create deployment binarycalculator-deployment --image "$IMAGE_TAG" --port=8080'
                     }
                 }
             }
@@ -81,8 +83,8 @@ spec:
             steps {
                 container('gcloud') {
                     dir('BinaryCalculatorWebapp') {
-                        sh 'gcloud config set project $PROJECT'
-                        sh 'gcloud container clusters get-credentials $CLUSTER --zone=$CLUSTER_ZONE'
+                        sh 'gcloud config set project "$PROJECT"'
+                        sh 'gcloud container clusters get-credentials "$CLUSTER" --zone="$CLUSTER_ZONE"'
 
                         script {
                             try {
